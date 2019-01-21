@@ -24,8 +24,69 @@ public class AdapterPatternMain {
 	 */
 	
 	public static void main(String[] args) {
-
+		
+		//We create a list of Real Madrid Players.
+		List<RealMadridPlayer> realMadridPlayers = new ArrayList<>();
 		
 	}
 
+}
+
+interface RealMadridPlayer {
+	
+	Double getSalary();
+	
+	Integer getAge();
+	
+	String getPosition();
+	
+	String getHalaMadrid();
+	
+}
+
+class ZinedineZidane implements RealMadridPlayer{
+
+	private Double salary;
+	private Integer age;
+	private String position;
+	private String message;
+	
+	@Override
+	public Double getSalary() {
+		return this.salary;
+	}
+
+	@Override
+	public Integer getAge() {
+		return this.age;
+	}
+
+	@Override
+	public String getPosition() {
+		return this.position;
+	}
+
+	@Override
+	public String getHalaMadrid() {
+		return this.message;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	
+}
+	
 }
