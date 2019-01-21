@@ -20,5 +20,21 @@ public class TemplaMethodPatternMain {
 	public static void main(String[] args) {
 
 	}
+	
+}
 
+abstract class SportEvent{
+	
+	abstract void initEvent();
+	
+	abstract void intermediate();
+	
+	abstract void endEvent();
+	
+	public void celebrateEvent() {
+		initEvent();
+		intermediate();
+		endEvent();
+	}
+	
 }
