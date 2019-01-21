@@ -15,7 +15,7 @@ public class DecoratorPatternMain {
 	 * This interface is going to have some methods which will be implemented by a class which name will be Maradona
 	 * 
 	 * But few years later, appears an other great player that will have the same characteristics than Maradona but 
-	 * with better performance...this will be Messi our Decorator.
+	 * with better performance...this will be Messi.
 	 * 
 	 * See what's happens...
 	 * 
@@ -23,6 +23,42 @@ public class DecoratorPatternMain {
 	
 	public static void main(String[] args) {
 
+	}
+	
+}
+
+interface GreatPlayer {
+	
+	String greatMovement();
+	
+	String shot();
+
+	String assit();
+	
+	String awards();
+
+}
+
+class Maradona implements GreatPlayer {
+
+	@Override
+	public String greatMovement() {
+		return "I have a great dribbling";
+	}
+
+	@Override
+	public String shot() {
+		return "I have a great left shot";
+	}
+
+	@Override
+	public String assit() {
+		return "I'm very individualist";
+	}
+
+	@Override
+	public String awards() {
+		return "I have a golden ball";
 	}
 	
 }
