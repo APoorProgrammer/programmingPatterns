@@ -70,6 +70,12 @@ public class AdapterPatternMain {
 		//And check it is added
 		realMadridPlayers.stream().forEach(p -> System.out.println(p.toString()));
 		
+		//We can see the element luisFigoNewRealMadridPlayer accomplish with RealMadridPlayer interface 
+		//BEFORE adapting
+		//I'm Luis Figo and I the dorsal 7 in Barcelona and I say to supporters: ¡¡¡Visca el Barça y Visca Catalunya!!!
+		//AFTER adapting
+		//I'm Zinedine Zidane and I'm the number 5 in Real Madrid and I say to supporters: ¡¡¡Hala Madrid y nada más!!!
+		//I'm Luis Figo and I'm the number 10 in Real Madrid and I say to supporters: ¡¡¡Hala Madrid y nada más!!!
 	}
 
 }
@@ -122,12 +128,6 @@ class ZinedineZidane implements RealMadridPlayer{
 	public String getHalaMadrid() {
 		return HALA_MADRID;
 	}
-	
-	@Override
-	public String toString(){
-		return "I'm "+getName()+" and I'm the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
-	}
-
 	
 }
 	
