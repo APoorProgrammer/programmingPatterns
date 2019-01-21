@@ -16,6 +16,8 @@ public class DecoratorPatternMain {
 	 * 
 	 * But few years later, appears an other great player that will have the same characteristics than Maradona but 
 	 * with better performance...this will be Messi.
+	 * Messi appears implementing our Decorator class which will be ExtendingMaradona.
+	 * Messi's class have the same behavior of Maradona, but with betters characteristics.
 	 * 
 	 * See what's happens...
 	 * 
@@ -59,6 +61,16 @@ class Maradona implements GreatPlayer {
 	@Override
 	public String awards() {
 		return "I have a golden ball";
+	}
+	
+}
+
+abstract class ExtendingMaradona implements GreatPlayer {
+	
+	GreatPlayer greatPlayer;
+	
+	public ExtendingMaradona(GreatPlayer greatPlayer) {
+		this.greatPlayer = greatPlayer;
 	}
 	
 }
