@@ -13,4 +13,8 @@ public class Constants {
 	public static final Integer ZIDANE_NUMBER = 5;
 	public static final String HALA_MADRID = "¡¡¡Hala Madrid y nada más!!!";
 	
+	//Constants to Template method pattern's example
+	public static final String BASKETBALL = "BASKETBALL";
+	public static final String FOOTBALL = "FOOTBALL";
+	
 }
