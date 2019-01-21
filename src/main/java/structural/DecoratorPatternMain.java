@@ -35,7 +35,7 @@ interface GreatPlayer {
 	
 	String shot();
 
-	String assit();
+	String assist();
 	
 	String awards();
 
@@ -54,7 +54,7 @@ class Maradona implements GreatPlayer {
 	}
 
 	@Override
-	public String assit() {
+	public String assist() {
 		return "I'm very individualist";
 	}
 
@@ -71,6 +71,37 @@ abstract class ExtendingMaradona implements GreatPlayer {
 	
 	public ExtendingMaradona(GreatPlayer greatPlayer) {
 		this.greatPlayer = greatPlayer;
+	}
+	
+}
+
+class Messi extends ExtendingMaradona {
+
+	public Messi(GreatPlayer greatPlayer) {
+		super(greatPlayer);
+	}
+
+	@Override
+	public String greatMovement() {
+		StringBuilder myMovement = new StringBuilder(greatPlayer.greatMovement());
+		return myMovement.append(" but I do it very very fast ").toString();
+	}
+
+	@Override
+	public String shot() {
+		StringBuilder myShot = new StringBuilder(greatPlayer.shot());
+		return myShot.append(" and I score too many goals").toString();
+	}
+
+	@Override
+	public String assist() {
+		return "I try to assist my partners";
+	}
+
+	@Override
+	public String awards() {
+		StringBuilder myAwards = new StringBuilder(greatPlayer.awards());
+		return myAwards.append(" and four more and five golden boots").toString();
 	}
 	
 }
