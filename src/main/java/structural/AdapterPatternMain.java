@@ -49,7 +49,7 @@ class ZinedineZidane implements RealMadridPlayer{
 	private Double salary;
 	private Integer age;
 	private String position;
-	private String message;
+	private String halaMadrid;
 	
 	@Override
 	public Double getSalary() {
@@ -68,15 +68,15 @@ class ZinedineZidane implements RealMadridPlayer{
 
 	@Override
 	public String getHalaMadrid() {
-		return this.message;
+		return this.halaMadrid;
 	}
 
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setHalaMadrid(String halaMadrid) {
+		this.halaMadrid = halaMadrid;
 	}
 
 	public void setAge(Integer age) {
@@ -89,3 +89,59 @@ class ZinedineZidane implements RealMadridPlayer{
 	
 }
 	
+interface BarcelonaPlayer {
+	
+	Double getSalary();
+	
+	Integer getAge();
+	
+	String getPosition();
+	
+	String getViscaBarca();
+	
+}
+
+class LuisFigo implements BarcelonaPlayer{
+
+	private Double salary;
+	private Integer age;
+	private String position;
+	private String viscaBarca;
+	
+	@Override
+	public Double getSalary() {
+		return this.salary;
+	}
+
+	@Override
+	public Integer getAge() {
+		return this.age;
+	}
+
+	@Override
+	public String getPosition() {
+		return this.position;
+	}
+
+	@Override
+	public String getViscaBarca() {
+		return this.viscaBarca;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
+	public void setViscaBarca(String viscaBarca) {
+		this.viscaBarca = viscaBarca;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	
+}
