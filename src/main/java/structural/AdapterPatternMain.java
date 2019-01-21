@@ -1,11 +1,14 @@
 package structural;
 
-import static constants.Constants.FIGO_DORSAL;
+import static constants.Constants.BARCELONA_FIGO_DORSAL;
 import static constants.Constants.FIGO_SALARY;
 import static constants.Constants.HALA_MADRID;
 import static constants.Constants.VISCA_BARCA;
 import static constants.Constants.ZIDANE_NUMBER;
 import static constants.Constants.ZIDANE_SALARY;
+import static constants.Constants.RM_FIGO_DORSAL;
+import static constants.Constants.ZIDANE_NAME;
+import static constants.Constants.FIGO_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,25 +51,32 @@ public class AdapterPatternMain {
 		realMadridPlayers.stream().forEach(p -> System.out.println(p.toString()));
 
 		//We create a LuisFigo instance
-		BarcelonaPlayer figo = new LuisFigo();
+		BarcelonaPlayer figoInBarcelona = new LuisFigo();
 		//And configure it
-		figo.setSalary(FIGO_SALARY);
-		figo.setDorsal(FIGO_DORSAL);
+		figoInBarcelona.setSalary(FIGO_SALARY);
+		figoInBarcelona.setDorsal(BARCELONA_FIGO_DORSAL);
 		//We add Figo as Barcelona Player
-		barcelonaPlayers.add(figo);
+		barcelonaPlayers.add(figoInBarcelona);
 		//And check it is added
 		barcelonaPlayers.stream().forEach(p -> System.out.println(p.toString()));
 		
 		//But now how we added Figo to Real Madrid players...
 		
 		//Then appears our FlorentinoPerezAdapter
-		
+		RealMadridPlayer luisFigoNewRealMadridPlayer = new FlorentinoPerezAdapter(figoInBarcelona);
+		//We add Figo as Real Madrid Player
+		luisFigoNewRealMadridPlayer.setNumber(RM_FIGO_DORSAL);
+		realMadridPlayers.add(luisFigoNewRealMadridPlayer);
+		//And check it is added
+		realMadridPlayers.stream().forEach(p -> System.out.println(p.toString()));
 		
 	}
 
 }
 
 interface RealMadridPlayer {
+	
+	String getName();
 	
 	void setSalary(Double salary);
 	Double getSalary();
@@ -83,10 +93,17 @@ class ZinedineZidane implements RealMadridPlayer{
 	private Double salary;
 	private Integer number;
 
+	@Override
+	public String getName() {
+		return ZIDANE_NAME;
+	}
+	
+	@Override
 	public Integer getNumber() {
 		return number;
 	}
-
+                           
+	@Override
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
@@ -108,8 +125,7 @@ class ZinedineZidane implements RealMadridPlayer{
 	
 	@Override
 	public String toString(){
-		return "I the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
-		
+		return "I'm "+getName()+" and I'm the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
 	}
 
 	
@@ -117,6 +133,8 @@ class ZinedineZidane implements RealMadridPlayer{
 	
 interface BarcelonaPlayer {
 	
+	String getNom();
+
 	void setSalary(Double salary);
 	Double getSalary();
 
@@ -133,14 +151,21 @@ class LuisFigo implements BarcelonaPlayer{
 	private Integer dorsal;
 	
 	@Override
+	public String getNom() {
+		return FIGO_NAME;
+	}
+	
+	@Override
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
+	@Override
 	public Integer getDorsal() {
 		return dorsal;
 	}
 
+	@Override
 	public void setDorsal(Integer dorsal) {
 		this.dorsal = dorsal;
 	}
@@ -157,8 +182,7 @@ class LuisFigo implements BarcelonaPlayer{
 	
 	@Override
 	public String toString(){
-		return "I the number "+getDorsal()+" in Barcelona and I say to supporters: "+getViscaBarca();
-		
+		return "I'm "+getNom()+" and I the dorsal "+getDorsal()+" in Barcelona and I say to supporters: "+getViscaBarca();
 	}
 	
 }
@@ -172,6 +196,11 @@ class FlorentinoPerezAdapter implements RealMadridPlayer {
 	}
 
 	@Override
+	public String getName() {
+		return barcelonaPlayer.getNom();
+	}
+	
+	@Override
 	public void setSalary(Double salary) {
 		barcelonaPlayer.setSalary(salary);
 	}
@@ -183,7 +212,6 @@ class FlorentinoPerezAdapter implements RealMadridPlayer {
 
 	@Override
 	public String getHalaMadrid() {
-		// TODO Auto-generated method stub
 		return HALA_MADRID;
 	}
 
@@ -199,8 +227,7 @@ class FlorentinoPerezAdapter implements RealMadridPlayer {
 	
 	@Override
 	public String toString(){
-		return "I the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
-		
+		return "I'm "+getName()+" and I'm the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
 	}
 	
 }
