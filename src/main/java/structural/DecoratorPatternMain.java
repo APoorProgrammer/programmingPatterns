@@ -25,8 +25,32 @@ public class DecoratorPatternMain {
 	
 	public static void main(String[] args) {
 
+		//We create a Maradona instance and show its abilities.
+		GreatPlayer maradona = new Maradona();
+		showGreatPlayerCharacteristics(maradona);
+		//We create a Messi instance and show its abilities.
+		GreatPlayer messi = new Messi(maradona);
+		showGreatPlayerCharacteristics(messi);
+		
+		//As you can see we can extends in runtime execution the behaviour of GreatPlayer with Decorator pattern
+		// MOVEMENTS: I have a great dribbling
+		// SHOT: I have a great left shot
+		// ASSIST: I'm very individualist
+		// AWARDS: I have a golden ball
+
+		// MOVEMENTS: I have a great dribbling but I do it very very fast 
+		// SHOT: I have a great left shot and I score too many goals
+		// ASSIST: I try to assist my partners
+		// AWARDS: I have a golden ball and four more and five golden boots
 	}
 	
+	public static void showGreatPlayerCharacteristics(GreatPlayer greatPlayer) {
+		System.out.println("MOVEMENTS: "+greatPlayer.greatMovement());
+		System.out.println("SHOT: "+greatPlayer.shot());
+		System.out.println("ASSIST: "+greatPlayer.assist());
+		System.out.println("AWARDS: "+greatPlayer.awards());
+		System.out.println();
+	}
 }
 
 interface GreatPlayer {
