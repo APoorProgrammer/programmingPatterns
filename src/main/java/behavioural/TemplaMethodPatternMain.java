@@ -38,3 +38,42 @@ abstract class SportEvent{
 	}
 	
 }
+
+class BasketballEvent extends SportEvent{
+
+	@Override
+	void initEvent() {
+		System.out.println("All players are introduced by th speaker");
+	}
+
+	@Override
+	void intermediate() {
+		System.out.println("Audience take a break");
+	}
+
+	@Override
+	void endEvent() {
+		System.out.println("All players come back to the changing room");
+		
+	}
+	
+}
+
+class FootballEvent extends SportEvent{
+
+	@Override
+	void initEvent() {
+		System.out.println("All players go out to the football pitch in a single file by team");
+	}
+
+	@Override
+	void intermediate() {
+		System.out.println("Audience take a break");
+	}
+
+	@Override
+	void endEvent() {
+		System.out.println("The team which have lost the match protest to the referee. ");
+	}
+	
+}
