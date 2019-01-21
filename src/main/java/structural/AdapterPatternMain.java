@@ -34,13 +34,14 @@ public class AdapterPatternMain {
 		
 		//We create a list of Real Madrid Players.
 		List<RealMadridPlayer> realMadridPlayers = new ArrayList<>();
+		//We create a list of Barcelona Players.
+		List<BarcelonaPlayer> barcelonaPlayers = new ArrayList<>();
 		
 		//We create a ZinedineZidane instance
 		RealMadridPlayer zidane = new ZinedineZidane();
 		//And configure it
 		zidane.setSalary(ZIDANE_SALARY);
 		zidane.setNumber(ZIDANE_NUMBER);
-		zidane.setHalaMadrid(HALA_MADRID);
 		//We add Zidane as Real Madrid Player
 		realMadridPlayers.add(zidane);
 		//And check it is added
@@ -51,7 +52,11 @@ public class AdapterPatternMain {
 		//And configure it
 		figo.setSalary(FIGO_SALARY);
 		figo.setDorsal(FIGO_DORSAL);
-		figo.setViscaBarca(VISCA_BARCA);
+		//We add Figo as Barcelona Player
+		barcelonaPlayers.add(figo);
+		//And check it is added
+		barcelonaPlayers.stream().forEach(p -> System.out.println(p.toString()));
+		
 		//But now how we added Figo to Real Madrid players...
 		
 		//Then appears our FlorentinoPerezAdapter
@@ -66,7 +71,6 @@ interface RealMadridPlayer {
 	void setSalary(Double salary);
 	Double getSalary();
 
-	void setHalaMadrid(String halaMadrid);
 	String getHalaMadrid();
 	
 	void setNumber(Integer number);
@@ -77,7 +81,6 @@ interface RealMadridPlayer {
 class ZinedineZidane implements RealMadridPlayer{
 
 	private Double salary;
-	private String halaMadrid;
 	private Integer number;
 
 	public Integer getNumber() {
@@ -100,14 +103,9 @@ class ZinedineZidane implements RealMadridPlayer{
 
 	@Override
 	public String getHalaMadrid() {
-		return this.halaMadrid;
+		return HALA_MADRID;
 	}
 	
-	@Override	
-	public void setHalaMadrid(String halaMadrid) {
-		this.halaMadrid = halaMadrid;
-	}
-
 	@Override
 	public String toString(){
 		return "I the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
@@ -122,7 +120,6 @@ interface BarcelonaPlayer {
 	void setSalary(Double salary);
 	Double getSalary();
 
-	void setViscaBarca(String viscaBarca);
 	String getViscaBarca();
 	
 	void setDorsal(Integer dorsal);
@@ -133,7 +130,6 @@ interface BarcelonaPlayer {
 class LuisFigo implements BarcelonaPlayer{
 
 	private Double salary;
-	private String viscaBarca;
 	private Integer dorsal;
 	
 	@Override
@@ -153,18 +149,57 @@ class LuisFigo implements BarcelonaPlayer{
 	public Double getSalary() {
 		return this.salary;
 	}
-	@Override
-	public void setViscaBarca(String viscaBarca) {
-		this.viscaBarca = viscaBarca;
-	}
+
 	@Override
 	public String getViscaBarca() {
-		return viscaBarca;
+		return VISCA_BARCA;
 	}
 	
 	@Override
 	public String toString(){
-		return "I the number"+getDorsal()+" in Barcelona and I say to supporters: "+getViscaBarca();
+		return "I the number "+getDorsal()+" in Barcelona and I say to supporters: "+getViscaBarca();
+		
+	}
+	
+}
+
+class FlorentinoPerezAdapter implements RealMadridPlayer {
+	
+	BarcelonaPlayer barcelonaPlayer;
+	
+	public FlorentinoPerezAdapter(BarcelonaPlayer barcelonaPlayer) {
+		this.barcelonaPlayer = barcelonaPlayer;
+	}
+
+	@Override
+	public void setSalary(Double salary) {
+		barcelonaPlayer.setSalary(salary);
+	}
+
+	@Override
+	public Double getSalary() {
+		return barcelonaPlayer.getSalary();
+	}
+
+	@Override
+	public String getHalaMadrid() {
+		// TODO Auto-generated method stub
+		return HALA_MADRID;
+	}
+
+	@Override
+	public void setNumber(Integer number) {
+		barcelonaPlayer.setDorsal(number);
+	}
+
+	@Override
+	public Integer getNumber() {
+		return barcelonaPlayer.getDorsal();
+	}
+	
+	@Override
+	public String toString(){
+		return "I the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
 		
 	}
 	
