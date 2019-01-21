@@ -1,5 +1,12 @@
 package structural;
 
+import static constants.Constants.FIGO_DORSAL;
+import static constants.Constants.FIGO_SALARY;
+import static constants.Constants.HALA_MADRID;
+import static constants.Constants.VISCA_BARCA;
+import static constants.Constants.ZIDANE_NUMBER;
+import static constants.Constants.ZIDANE_SALARY;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,120 +35,137 @@ public class AdapterPatternMain {
 		//We create a list of Real Madrid Players.
 		List<RealMadridPlayer> realMadridPlayers = new ArrayList<>();
 		
+		//We create a ZinedineZidane instance
+		RealMadridPlayer zidane = new ZinedineZidane();
+		//And configure it
+		zidane.setSalary(ZIDANE_SALARY);
+		zidane.setNumber(ZIDANE_NUMBER);
+		zidane.setHalaMadrid(HALA_MADRID);
+		//We add Zidane as Real Madrid Player
+		realMadridPlayers.add(zidane);
+		//And check it is added
+		realMadridPlayers.stream().forEach(p -> System.out.println(p.toString()));
+
+		//We create a LuisFigo instance
+		BarcelonaPlayer figo = new LuisFigo();
+		//And configure it
+		figo.setSalary(FIGO_SALARY);
+		figo.setDorsal(FIGO_DORSAL);
+		figo.setViscaBarca(VISCA_BARCA);
+		//But now how we added Figo to Real Madrid players...
+		
+		//Then appears our FlorentinoPerezAdapter
+		
+		
 	}
 
 }
 
 interface RealMadridPlayer {
 	
+	void setSalary(Double salary);
 	Double getSalary();
-	
-	Integer getAge();
-	
-	String getPosition();
-	
+
+	void setHalaMadrid(String halaMadrid);
 	String getHalaMadrid();
+	
+	void setNumber(Integer number);
+	Integer getNumber();
 	
 }
 
 class ZinedineZidane implements RealMadridPlayer{
 
 	private Double salary;
-	private Integer age;
-	private String position;
 	private String halaMadrid;
-	
+	private Integer number;
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	@Override
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
 	@Override
 	public Double getSalary() {
 		return this.salary;
-	}
-
-	@Override
-	public Integer getAge() {
-		return this.age;
-	}
-
-	@Override
-	public String getPosition() {
-		return this.position;
 	}
 
 	@Override
 	public String getHalaMadrid() {
 		return this.halaMadrid;
 	}
-
-	public void setSalary(Double salary) {
-		this.salary = salary;
-	}
-
+	
+	@Override	
 	public void setHalaMadrid(String halaMadrid) {
 		this.halaMadrid = halaMadrid;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	@Override
+	public String toString(){
+		return "I the number "+getNumber()+" in Real Madrid and I say to supporters: "+getHalaMadrid();
+		
 	}
 
-	public void setPosition(String position) {
-		this.position = position;
-	}
 	
 }
 	
 interface BarcelonaPlayer {
 	
+	void setSalary(Double salary);
 	Double getSalary();
-	
-	Integer getAge();
-	
-	String getPosition();
-	
+
+	void setViscaBarca(String viscaBarca);
 	String getViscaBarca();
+	
+	void setDorsal(Integer dorsal);
+	Integer getDorsal();
 	
 }
 
 class LuisFigo implements BarcelonaPlayer{
 
 	private Double salary;
-	private Integer age;
-	private String position;
 	private String viscaBarca;
+	private Integer dorsal;
 	
 	@Override
-	public Double getSalary() {
-		return this.salary;
-	}
-
-	@Override
-	public Integer getAge() {
-		return this.age;
-	}
-
-	@Override
-	public String getPosition() {
-		return this.position;
-	}
-
-	@Override
-	public String getViscaBarca() {
-		return this.viscaBarca;
-	}
-
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
+	public Integer getDorsal() {
+		return dorsal;
+	}
+
+	public void setDorsal(Integer dorsal) {
+		this.dorsal = dorsal;
+	}
+
+	@Override
+	public Double getSalary() {
+		return this.salary;
+	}
+	@Override
 	public void setViscaBarca(String viscaBarca) {
 		this.viscaBarca = viscaBarca;
 	}
-
-	public void setAge(Integer age) {
-		this.age = age;
+	@Override
+	public String getViscaBarca() {
+		return viscaBarca;
 	}
-
-	public void setPosition(String position) {
-		this.position = position;
+	
+	@Override
+	public String toString(){
+		return "I the number"+getDorsal()+" in Barcelona and I say to supporters: "+getViscaBarca();
+		
 	}
 	
 }
