@@ -1,10 +1,12 @@
 package behavioural;
 
-import static constants.Constants.MIN;
 import static constants.Constants.MAX;
+import static constants.Constants.MAX_PAYED_OFFER;
+import static constants.Constants.MIN;
 import static constants.Constants.MIN_AVERAGE;
 import static constants.Constants.SIGNED;
-import static constants.Constants.MAX_PAYED_OFFER;
+
+import java.text.DecimalFormat;
 
 
 public class ChainOfResponsibilityPatternMain {
@@ -26,7 +28,17 @@ public class ChainOfResponsibilityPatternMain {
 	 */
 	
 	public static void main(String[] args) {
-
+		
+		Messi player = new Messi();
+		HiringChain scout = new Scout();
+		HiringChain footaballDirector = new FootaballDirector();
+		HiringChain president = new President();
+		
+		scout.setNextLinkChain(footaballDirector);
+		footaballDirector.setNextLinkChain(president);
+		president.setNextLinkChain(null);
+		
+		scout.callNextEvaluator(player);
 	}
 
 }
@@ -77,6 +89,7 @@ interface HiringChain {
 class Scout implements HiringChain {
 
 	private HiringChain next;
+	private final DecimalFormat df = new DecimalFormat();
 	
 	@Override
 	public void setNextLinkChain(HiringChain next) {
@@ -96,9 +109,15 @@ class Scout implements HiringChain {
 
 	@Override
 	public boolean evaluatePlayer(Messi player) {
-		player.setDribbling(RandomValues.getValue(MIN, MAX));
-		player.setShot(RandomValues.getValue(MIN, MAX));
-		player.setAssist(RandomValues.getValue(MIN, MAX));
+		System.out.println("Scout says: ");
+		player.setCost(Math.floor(RandomValues.getValue(MIN, MAX)));
+		player.setDribbling(Math.floor(RandomValues.getValue(MIN, MAX)));
+		System.out.println("Messi has a DRIBLLING score of "+player.getDribbling());
+		player.setShot(Math.floor(RandomValues.getValue(MIN, MAX)));
+		System.out.println("Messi has a SHOT score of "+player.getShot());
+		player.setAssist(Math.floor(RandomValues.getValue(MIN, MAX)));
+		System.out.println("Messi has an ASSIST score of "+player.getAssist());		
+		System.out.println();
 		return true;
 	}
 	
@@ -134,8 +153,10 @@ class FootaballDirector implements HiringChain {
 	@Override
 	public boolean evaluatePlayer(Messi player) {
 		Double average = (player.getDribbling()+player.getAssist()+player.getShot())/3;
+		System.out.println("Football Director says: ");
+		System.out.println("Messi has an AVERAGE score of "+average+" and has to have an minium average of "+MIN_AVERAGE+" to hire to us");
+		System.out.println();
 		if(average>=MIN_AVERAGE) {
-			System.out.println("Messi has an average of "+average);
 			return SIGNED;
 		}
 		return !SIGNED;
@@ -164,6 +185,8 @@ class President implements HiringChain {
 	
 	@Override
 	public boolean evaluatePlayer(Messi player) {
+		System.out.println("President says: ");
+		System.out.println("Messi has an COST of "+player.getCost()+" and has to have an maxium cost of "+MAX_PAYED_OFFER+" to hire to us");
 		if(MAX_PAYED_OFFER >= player.getCost()) {
 			return SIGNED;
 		}
