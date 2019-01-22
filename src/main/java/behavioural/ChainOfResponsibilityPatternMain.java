@@ -39,6 +39,21 @@ public class ChainOfResponsibilityPatternMain {
 		president.setNextLinkChain(null);
 		
 		scout.callNextEvaluator(player);
+		
+		//This is an example of execution
+		
+//		Scout says: 
+//		Messi has a DRIBLLING score of 9.0
+//		Messi has a SHOT score of 8.0
+//		Messi has an ASSIST score of 7.0
+//
+//		Football Director says: 
+//		Messi has an AVERAGE score of 8.0 and has to have an minium average of 7.5 to hire to us
+//
+//		President says: 
+//		Messi has an COST of 8.0 and has to have an maxium cost of 10.5 to hire to us
+//		We hire D10S!!!!
+		
 	}
 
 }
