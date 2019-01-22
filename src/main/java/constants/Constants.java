@@ -17,4 +17,9 @@ public class Constants {
 	public static final String BASKETBALL = "BASKETBALL";
 	public static final String FOOTBALL = "FOOTBALL";
 	
+	//Constants to Mediator Pattern
+	public static final Boolean SIGNED = true;
+	public static final String SELLER = "Manchester United";
+	public static final String BUYER = "Real Madrid";
+	
 }
