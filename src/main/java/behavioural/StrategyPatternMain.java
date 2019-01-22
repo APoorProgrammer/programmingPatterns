@@ -1,6 +1,6 @@
 package behavioural;
 
-public class StrategyPatternMAin {
+public class StrategyPatternMain {
 
 	/**
 	 * 
