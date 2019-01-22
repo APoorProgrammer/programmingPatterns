@@ -22,4 +22,11 @@ public class Constants {
 	public static final String SELLER = "Manchester United";
 	public static final String BUYER = "Real Madrid";
 	
+	
+	//Constants to Chain Of Respoibility Pattern
+	public static final Double MIN = 0.0;
+	public static final Double MAX = 10.0;
+	public static final Double MIN_AVERAGE = 7.5;
+	public static final Double MAX_PAYED_OFFER = 10.5;
+			
 }
