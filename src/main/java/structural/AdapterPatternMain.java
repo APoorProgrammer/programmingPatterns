@@ -189,7 +189,7 @@ class LuisFigo implements BarcelonaPlayer{
 
 class FlorentinoPerezAdapter implements RealMadridPlayer {
 	
-	BarcelonaPlayer barcelonaPlayer;
+	private BarcelonaPlayer barcelonaPlayer;
 	
 	public FlorentinoPerezAdapter(BarcelonaPlayer barcelonaPlayer) {
 		this.barcelonaPlayer = barcelonaPlayer;
