@@ -1,8 +1,10 @@
 package behavioural;
 
-import java.util.ArrayList;
+import static constants.Constants.BUYER;
+import static constants.Constants.SELLER;
+import static constants.Constants.SIGNED;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class MediatorPatternMain {
@@ -26,6 +28,23 @@ public class MediatorPatternMain {
 	 */
 	
 	public static void main(String[] args) {
+		
+		FIFA mediator = new FIFAMediator();
+		
+		Transfer deGeaTransfer = new Transfer("De Gea", 12.45);
+		
+		ManchesterUnitedSellerTeam manchester = new ManchesterUnitedSellerTeam(mediator);
+		RealMadridBuyerTeam realMadrid= new RealMadridBuyerTeam(mediator, BUYER);
+		//Before signed the transfer
+		manchester.sendTransfer(deGeaTransfer, BUYER, SELLER);
+		realMadrid.checkTransfer(deGeaTransfer);
+		
+		manchester.sign(deGeaTransfer);
+		realMadrid.sign(deGeaTransfer);
+		
+		//After they agree and signed the transfer
+		manchester.sendTransfer(deGeaTransfer, BUYER, SELLER);
+		realMadrid.checkTransfer(deGeaTransfer);
 
 	}
 	
@@ -40,16 +59,9 @@ interface FIFA {
 
 class FIFAMediator implements FIFA {
 
-	List<Team> teams;
-	Set<Transfer> transfers;
+	private Set<Transfer> transfers;
 	
 	public FIFAMediator() {
-		this.teams = new ArrayList<>();
-		this.transfers = new HashSet<>();
-	}
-	
-	public FIFAMediator(List<Team> teams) {
-		this.teams = teams;
 		this.transfers = new HashSet<>();
 	}
 	
@@ -74,28 +86,12 @@ class Transfer {
 	private Double value;
 	private Boolean signedBySeller;
 	private Boolean signedByBuyer;
-	private String seller;
-	private String buyer;
-	
-	public String getSeller() {
-		return seller;
-	}
-
-	public void setSeller(String seller) {
-		this.seller = seller;
-	}
-
-	public String getBuyer() {
-		return buyer;
-	}
-
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
-	}
 
 	public Transfer(String namePlayer, Double value) {
 		this.namePlayer = namePlayer;
 		this.value = value;
+		this.signedBySeller = false;
+		this.signedByBuyer = false;
 	}
 	
 	public Boolean getSignedBySeller() {
@@ -125,14 +121,7 @@ class Transfer {
 	
 }
 
-//Could use abstract class too
-interface Team {
-	Boolean sendTransfer(Transfer transferPlayer, String buyer, String seller);
-	void checkTransfer(Transfer transferPlayer);
-	Boolean sign(Transfer transfer, Boolean signed);
-}
-
-class RealMadridBuyerTeam implements Team {
+class RealMadridBuyerTeam {
 	
 	private FIFA mediator;
 	private String name;
@@ -142,10 +131,6 @@ class RealMadridBuyerTeam implements Team {
 		this.name = name;
 	}
 	
-	public Boolean sendTransfer(Transfer transferPlayer, String buyer, String seller) {
-		return false;
-	}
-	
 	public void checkTransfer(Transfer transferPlayer) {
 		System.out.println("We are "+this.name+" and we want to know if "+transferPlayer.getNamePlayer()+ "'s documentation is OK ");
 		if(mediator.receiveTransfer(transferPlayer)) {
@@ -153,40 +138,33 @@ class RealMadridBuyerTeam implements Team {
 		}else {
 			System.out.println("Oh jeez, dawn Manchester United!!!!, the fax fails again....");
 		}
+		System.out.println();
 	}
 
-	@Override
-	public Boolean sign(Transfer transfer, Boolean signed) {
-		transfer.setSignedByBuyer(signed);
-		return signed;
+	public Boolean sign(Transfer transfer) {
+		transfer.setSignedByBuyer(SIGNED);
+		return SIGNED;
 	}
 
 }
 
-class ManchesterUnitedSellerTeam implements Team {
+class ManchesterUnitedSellerTeam{
 	
 	private FIFA mediator;
-	private String name;
 	
-	public ManchesterUnitedSellerTeam(FIFA mediator, String name) {
+	public ManchesterUnitedSellerTeam(FIFA mediator) {
 		this.mediator = mediator;
-		this.name = name;
 	}
 	
 	public Boolean sendTransfer(Transfer transferPlayer, String buyer, String seller) {
-		System.out.println("We are "+buyer+" and we want to sell "+transferPlayer.getNamePlayer()+ " to "+seller);
-		transferPlayer.setSeller(seller);
-		transferPlayer.setBuyer(buyer);
+		System.out.println("We are "+seller+" and we want to sell "+transferPlayer.getNamePlayer()+ " to "+buyer);
+		System.out.println();
 		return mediator.sendTransfer(transferPlayer);
 	}
 	
-	public void checkTransfer(Transfer transferPlayer) {
-	}
-	
-	@Override
-	public Boolean sign(Transfer transfer, Boolean signed) {
-		transfer.setSignedBySeller(signed);
-		return signed;
+	public Boolean sign(Transfer transfer) {
+		transfer.setSignedBySeller(SIGNED);
+		return SIGNED;
 	}
 }
 
