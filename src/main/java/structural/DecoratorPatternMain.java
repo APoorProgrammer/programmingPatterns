@@ -91,7 +91,7 @@ class Maradona implements GreatPlayer {
 
 abstract class ExtendingMaradona implements GreatPlayer {
 	
-	GreatPlayer greatPlayer;
+	protected GreatPlayer greatPlayer;
 	
 	public ExtendingMaradona(GreatPlayer greatPlayer) {
 		this.greatPlayer = greatPlayer;
