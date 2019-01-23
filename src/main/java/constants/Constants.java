@@ -34,4 +34,13 @@ public class Constants {
 	public static final String HIGH_SALARY_CLASS = "High salary class";
 	public static final String MID_SALARY_CLASS = "Mid salary class";
 	
+	//Flyweight Pattern
+	public static final Integer ZIDANE_COACH_CHAMPIONS_NUMBER = 3;
+	public static final String MODRIC_NATIONALITY = "Croatian";
+	public static final String CR7 = "Cristiano";
+	public static final String ZIDANE = "Zidane";
+	public static final String MODRIC = "Modric";
+	public static final String FIGO = "Figo";
+	public static final String RONALDO = "Ronaldo";
+	public static final String PATH = "structural.";
 }
