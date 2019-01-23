@@ -29,4 +29,9 @@ public class Constants {
 	public static final Double MIN_AVERAGE = 7.5;
 	public static final Double MAX_PAYED_OFFER = 10.5;
 			
+	//Constants Composite Pattern
+	public static final String TOP_SALARY_CLASS = "Top salary class";
+	public static final String HIGH_SALARY_CLASS = "High salary class";
+	public static final String MID_SALARY_CLASS = "Mid salary class";
+	
 }
