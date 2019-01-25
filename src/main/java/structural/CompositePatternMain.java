@@ -30,15 +30,15 @@ public class CompositePatternMain {
 	
 	public static void main(String[] args) {
 		//Create Leaf classes
-		SalaryClass cR7 = new PassBallPlayer("CR7", 12.33);
+		SalaryClass cR7 = new SalaryPlayer("CR7", 12.33);
 		
-		SalaryClass sergioRamos = new PassBallPlayer("Sergio Ramos", 6.66);
-		SalaryClass bale = new PassBallPlayer("Bale", 8.66);
-		SalaryClass kroos = new PassBallPlayer("Kroos", 7.66);
+		SalaryClass sergioRamos = new SalaryPlayer("Sergio Ramos", 6.66);
+		SalaryClass bale = new SalaryPlayer("Bale", 8.66);
+		SalaryClass kroos = new SalaryPlayer("Kroos", 7.66);
 		
-		SalaryClass asensio = new PassBallPlayer("Asensio", 3.51);
-		SalaryClass lucasVazquez = new PassBallPlayer("Lucas Vázquez", 3.99);
-		SalaryClass isco = new PassBallPlayer("Isco", 5.99);
+		SalaryClass asensio = new SalaryPlayer("Asensio", 3.51);
+		SalaryClass lucasVazquez = new SalaryPlayer("Lucas Vázquez", 3.99);
+		SalaryClass isco = new SalaryPlayer("Isco", 5.99);
 		
 		//Composite classes
 		SalaryClass topSalaryClass = new SalaryChainLink(TOP_SALARY_CLASS, cR7.getSalary());
@@ -88,12 +88,12 @@ interface SalaryClass {
 }
 
 //Leaf class
-class Player implements SalaryClass{
+class SalaryPlayer implements SalaryClass{
 
 	private String name;
 	private Double salary;
 	
-	public Player(String name, double salary) {
+	public SalaryPlayer(String name, double salary) {
 		this.name = name;
 		this.salary = salary;
 	}
