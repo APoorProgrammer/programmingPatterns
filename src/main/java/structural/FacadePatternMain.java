@@ -1,6 +1,18 @@
 package structural;
 
-import static constants.Constants.*;
+import static constants.Constants.ACCEPTED;
+import static constants.Constants.ATMADRID_MIN_OFFER;
+import static constants.Constants.AT_MADRID_CRYING;
+import static constants.Constants.BARCELONA_MIN_OFFER;
+import static constants.Constants.BARCELONA_VINDICATION;
+import static constants.Constants.LEVANTE_CELEBRATION;
+import static constants.Constants.MAFIA_COMMISSION;
+import static constants.Constants.SEVILLA_CELEBRATION;
+import static constants.Constants.SEVILLA_MIN_OFFER;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class FacadePatternMain {
 
@@ -20,27 +32,35 @@ public class FacadePatternMain {
 	
 	public static void main(String[] args) {
 
+		LaLigaNegotiator laLigaNegotiator = new LaLigaNegotiator();
+		
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.BARCELONA, BARCELONA_MIN_OFFER-9);
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.SEVILLA, SEVILLA_MIN_OFFER);
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.BARCELONA, BARCELONA_MIN_OFFER+18);
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.AT_MADRID, ATMADRID_MIN_OFFER+1);
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.LEVANTE, 100.5);
+		laLigaNegotiator.buyBroadcastTeamRights(LaLiga.TEAMS.AT_MADRID, ATMADRID_MIN_OFFER+MAFIA_COMMISSION);
+
 	}
 
 }
 
+interface Team {
+}
+
 interface SevillaTeam {
-	boolean getBroadcastTeamRights(Double quantity);
 	void celebrateEuropaLeague();
 }
 
 interface BarcelonaTeam {
-	boolean someoneOffersBuyYourRigths(Double quantity);
 	void singIndependenciaInCampNou();
 }
 
 interface LevanteTeam {
-	boolean buyRigths(Double quantity);
 	void calebratePromotion();
 }
 
 interface AtMadridTeam {
-	boolean sellOurBroadcastRights(Double quantity);
 	void cryingMinute93();
 }
 
@@ -51,13 +71,14 @@ interface LaLiga {
 	boolean buyBroadcastTeamRights(TEAMS team, Double quantity);
 }
 
-class Sevilla implements SevillaTeam {
+class Sevilla implements SevillaTeam, Team {
 
-	@Override
-	public boolean getBroadcastTeamRights(Double quantity) {
+	public static boolean getBroadcastTeamRights(Double quantity) {
 		if(quantity < SEVILLA_MIN_OFFER) {
+			System.out.println("Not enough!!");
 			return !ACCEPTED;
 		}
+		System.out.println("Trato y olé!!");
 		return ACCEPTED;
 	}
 
@@ -68,30 +89,31 @@ class Sevilla implements SevillaTeam {
 	
 }
 
-class Barcelona implements BarcelonaTeam {
+class Barcelona implements BarcelonaTeam, Team {
 
-	@Override
-	public boolean someoneOffersBuyYourRigths(Double quantity) {
+	public static boolean someoneOffersBuyYourRigths(Double quantity) {
 		if(quantity <= BARCELONA_MIN_OFFER) {
+			System.out.println("We want more");
 			return !ACCEPTED;
 		}
+		System.out.println("Ok!!!, with this money we will pay Messi's taxes");
 		return ACCEPTED;
 	}
 
-	@Override
 	public void singIndependenciaInCampNou() {
 		System.out.println(BARCELONA_VINDICATION);
 	}
 	
 }
 
-class AtMadrid implements AtMadridTeam {
+class AtMadrid implements AtMadridTeam, Team {
 
-	@Override
-	public boolean sellOurBroadcastRights(Double quantity) {
+	public static boolean sellOurBroadcastRights(Double quantity) {
 		if(quantity < (ATMADRID_MIN_OFFER+MAFIA_COMMISSION)) {
+			System.out.println("We don't accept that");
 			return !ACCEPTED;
 		}
+		System.out.println("More money to Cerezo and MAG...");
 		return ACCEPTED;	}
 
 	@Override
@@ -101,10 +123,10 @@ class AtMadrid implements AtMadridTeam {
 	
 }
 
-class Levante implements LevanteTeam {
+class Levante implements LevanteTeam, Team {
 
-	@Override
-	public boolean buyRigths(Double quantity) {
+	public static boolean buyRigths(Double quantity) {
+		System.out.println("Yeah!!!");
 		return ACCEPTED;
 	}
 
@@ -114,5 +136,26 @@ class Levante implements LevanteTeam {
 		
 	}
 	
+}
+
+class LaLigaNegotiator implements LaLiga {
+
+	@Override
+	public boolean buyBroadcastTeamRights(TEAMS team, Double quantity) {
+		System.out.print(team.toString()+": ");
+		if(team.equals(TEAMS.BARCELONA)) {
+			return Barcelona.someoneOffersBuyYourRigths(quantity);
+		}
+		if(team.equals(TEAMS.AT_MADRID)) {
+			return AtMadrid.sellOurBroadcastRights(quantity);
+		}
+		if(team.equals(TEAMS.SEVILLA)) {
+			return Sevilla.getBroadcastTeamRights(quantity);
+		}
+		if(team.equals(TEAMS.LEVANTE)) {
+			return Levante.buyRigths(quantity);
+		}
+		return false;
+	}
 }
 

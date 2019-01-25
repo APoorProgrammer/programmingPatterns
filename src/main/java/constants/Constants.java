@@ -50,6 +50,10 @@ public class Constants {
 	public static final Double LEVANTE_MIN_OFFER = 25.5;
 	public static final Double BARCELONA_MIN_OFFER = 120.5;
 	public static final Double ATMADRID_MIN_OFFER = 62.5;
+	public static final Double MAFIA_COMMISSION = 12.5;
 	public static final String SEVILLA_CELEBRATION = "¡¡¡Y Sevilla, Sevilla, Sevilla...!!!";
+	public static final String BARCELONA_VINDICATION = "¡¡¡IN-DE...IN-DE-PENDENCIA!!!";
+	public static final String AT_MADRID_CRYING = "...unbelievable..Ramos...";
+	public static final String LEVANTE_CELEBRATION = "¡¡¡Campeones, Camepones!!!";
 	
 }
