@@ -1,5 +1,7 @@
 package structural;
 
+import static constants.Constants.*;
+
 public class FacadePatternMain {
 
 	/**
@@ -24,7 +26,7 @@ public class FacadePatternMain {
 
 interface SevillaTeam {
 	boolean getBroadcastTeamRights(Double quantity);
-	void singAntonioPuertaInPizjuan();
+	void celebrateEuropaLeague();
 }
 
 interface BarcelonaTeam {
@@ -43,10 +45,74 @@ interface AtMadridTeam {
 }
 
 interface LaLiga {
-	
 	public enum TEAMS {
-		LEVANTE, BARCELONA, SEVILLA, AT_MADRID, BARCELONA_B, SEVILLA_AT
+		LEVANTE, BARCELONA, SEVILLA, AT_MADRID
 	}
-	
 	boolean buyBroadcastTeamRights(TEAMS team, Double quantity);
 }
+
+class Sevilla implements SevillaTeam {
+
+	@Override
+	public boolean getBroadcastTeamRights(Double quantity) {
+		if(quantity < SEVILLA_MIN_OFFER) {
+			return !ACCEPTED;
+		}
+		return ACCEPTED;
+	}
+
+	@Override
+	public void celebrateEuropaLeague() {
+		System.out.println(SEVILLA_CELEBRATION);
+	}
+	
+}
+
+class Barcelona implements BarcelonaTeam {
+
+	@Override
+	public boolean someoneOffersBuyYourRigths(Double quantity) {
+		if(quantity <= BARCELONA_MIN_OFFER) {
+			return !ACCEPTED;
+		}
+		return ACCEPTED;
+	}
+
+	@Override
+	public void singIndependenciaInCampNou() {
+		System.out.println(BARCELONA_VINDICATION);
+	}
+	
+}
+
+class AtMadrid implements AtMadridTeam {
+
+	@Override
+	public boolean sellOurBroadcastRights(Double quantity) {
+		if(quantity < (ATMADRID_MIN_OFFER+MAFIA_COMMISSION)) {
+			return !ACCEPTED;
+		}
+		return ACCEPTED;	}
+
+	@Override
+	public void cryingMinute93() {
+		System.out.println(AT_MADRID_CRYING);
+	}
+	
+}
+
+class Levante implements LevanteTeam {
+
+	@Override
+	public boolean buyRigths(Double quantity) {
+		return ACCEPTED;
+	}
+
+	@Override
+	public void calebratePromotion() {
+		System.out.println(LEVANTE_CELEBRATION);
+		
+	}
+	
+}
+

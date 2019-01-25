@@ -43,4 +43,13 @@ public class Constants {
 	public static final String FIGO = "Figo";
 	public static final String RONALDO = "Ronaldo";
 	public static final String PATH = "structural.";
+
+	//Facade Pattern
+	public static final Boolean ACCEPTED = true;
+	public static final Double SEVILLA_MIN_OFFER = 52.5;
+	public static final Double LEVANTE_MIN_OFFER = 25.5;
+	public static final Double BARCELONA_MIN_OFFER = 120.5;
+	public static final Double ATMADRID_MIN_OFFER = 62.5;
+	public static final String SEVILLA_CELEBRATION = "¡¡¡Y Sevilla, Sevilla, Sevilla...!!!";
+	
 }
