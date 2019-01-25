@@ -21,3 +21,32 @@ public class FacadePatternMain {
 	}
 
 }
+
+interface SevillaTeam {
+	boolean getBroadcastTeamRights(Double quantity);
+	void singAntonioPuertaInPizjuan();
+}
+
+interface BarcelonaTeam {
+	boolean someoneOffersBuyYourRigths(Double quantity);
+	void singIndependenciaInCampNou();
+}
+
+interface LevanteTeam {
+	boolean buyRigths(Double quantity);
+	void calebratePromotion();
+}
+
+interface AtMadridTeam {
+	boolean sellOurBroadcastRights(Double quantity);
+	void cryingMinute93();
+}
+
+interface LaLiga {
+	
+	public enum TEAMS {
+		LEVANTE, BARCELONA, SEVILLA, AT_MADRID, BARCELONA_B, SEVILLA_AT
+	}
+	
+	boolean buyBroadcastTeamRights(TEAMS team, Double quantity);
+}
