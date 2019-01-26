@@ -56,4 +56,11 @@ public class Constants {
 	public static final String AT_MADRID_CRYING = "...unbelievable..Ramos...";
 	public static final String LEVANTE_CELEBRATION = "¡¡¡Campeones, Camepones!!!";
 	
+	//State pattern
+	public static final String FIT = "FIT: ";
+	public static final String IMPROVING = "IMPROVING: ";
+	public static final String LOW_FORM = "LOW FORM: ";
+	public static final String INJURED = "INJURED:";
+	
+	
 }
