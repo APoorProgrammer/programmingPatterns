@@ -62,5 +62,7 @@ public class Constants {
 	public static final String LOW_FORM = "LOW FORM: ";
 	public static final String INJURED = "INJURED:";
 	
+	//Builder pattern
+	public static final String NEW_TEAM = "Our team";
 	
 }
