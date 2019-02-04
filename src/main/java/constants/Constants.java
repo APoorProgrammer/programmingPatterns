@@ -76,4 +76,10 @@ public class Constants {
 	public static final String CRISTINAO_RONALDO = "Cristiano Ronaldo"; 
 	public static final String UNKNOWN_PLAYER = "Unknown_player"; 
 	
+	//Observer pattern
+	public static final String LUCAS_HERNANDEZ = "Lucas Hernández";
+	public static final String ISCO = "Isco";
+	public static final String DENIS_SUÁREZ = "Denis Suárez";
+	
+	
 }
