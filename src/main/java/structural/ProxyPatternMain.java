@@ -82,21 +82,25 @@ class FootballAgent implements FootballPlayer{
 		}
 	}
 	
-	private Double getMinPlayerOffer(String playerName, Double offer){
+	private Double getMinPlayerOffer(String playerName){
 		Double minOffer = agentMinOfferPlayers.get(playerName);
 		if(null == minOffer) {
-			System.out.println("AGENT SAYS: This player is not represent by me...");
+			System.out.println("AGENT SAYS: This player is not represented by me...");
+			return null;
 		}
-		return (offer+1);
+		return minOffer;
 	}
 	
 	@Override
 	public void signNewAgreement(Double offer, String clubName) {
 		proxyCheck(playerName);
-		if(offer<getMinPlayerOffer(playerName, offer)) {
-			System.out.println("AGENT SAYS: The offer must be higher!!!");
-		}else {
-			agentPlayers.get(playerName).signNewAgreement(offer, clubName);
+		Double minOffer = getMinPlayerOffer(playerName);
+		if(null != minOffer) {
+			if(offer<minOffer) {
+				System.out.println("AGENT SAYS: The offer must be higher!!!");
+			}else {
+				agentPlayers.get(playerName).signNewAgreement(offer, clubName);
+			}
 		}
 	}
 	
