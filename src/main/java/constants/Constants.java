@@ -65,4 +65,15 @@ public class Constants {
 	//Builder pattern
 	public static final String NEW_TEAM = "Our team";
 	
+	
+	//Proxy pattern
+	public static final Double MIN_OFFER_TO_SIGN_PEPE = 100.36; 
+	public static final Double MIN_OFFER_TO_SIGN_DIEGO_COSTA = 250.36; 
+	public static final Double MIN_OFFER_TO_SIGN_CR7 = 999.33; 
+	public static final String CLUB_NAME = "Real Madrid C.F."; 
+	public static final String PEPE = "Pepe"; 
+	public static final String DIEGO_COSTA = "Diego Costa"; 
+	public static final String CRISTINAO_RONALDO = "Cristiano Ronaldo"; 
+	public static final String UNKNOWN_PLAYER = "Unknown_player"; 
+	
 }
