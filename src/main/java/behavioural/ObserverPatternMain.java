@@ -7,6 +7,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ * @author David de Miguel Otero
+ * 
+ * This pattern represents a one-to-many relationship between one class(Observable) that must communicate 
+ * his state or changes to others(Observers).
+ * 
+ * In our case we are going to treat with diverse classes that has a ForSalePlayer interface and which 
+ * represents the Observable classes.
+ * When this classes change its state, they could be FOR SALE, NOT FOR SALE or LISTEN TO BIND, they communicate 
+ * its new state to Observers that implements BuyerClub interface. 
+ *
+ */
+
 public class ObserverPatternMain {
 
 	public static void main(String[] args) {
